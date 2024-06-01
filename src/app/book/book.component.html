@@ -1,0 +1,50 @@
+<div class="container">
+  <h1>Bookshelf</h1>
+  <p>
+    <mat-form-field>
+      <mat-label>Fill form field</mat-label>
+      <input matInput  placeholder="Author" [(ngModel)]="newAuthor">
+    </mat-form-field>  
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="Title" [(ngModel)]="newTitle">
+    </mat-form-field>
+  </p>
+  <button  mat-flat-button color="primary" (click)="addBook()">Add</button>
+  <!-- <ul>
+    <li *ngFor="let book of bookshelf; index as i"> 
+      {{book.title}} 
+      {{book.author}} 
+      <button mat-fab color="primary" (click)="deleteBook(i)">delete</button>
+    </li>
+  </ul> -->
+  <div class="container" >
+    <mat-form-field >
+      <input matInput placeholder="Remove Book" type="text" [(ngModel)]="binding">
+    </mat-form-field>
+    <button mat-raised-button color="warn" (click)="deleteBook(binding)">Delete</button>
+  </div>
+
+</div>
+  
+<table mat-table [dataSource]="bookshelf"  class="mat-elevation-z8 " >
+  <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> Title </th>
+    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="author">
+    <th mat-header-cell *matHeaderCellDef> Author </th>
+    <td mat-cell *matCellDef="let element"> {{element.author}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> id </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+</table>
