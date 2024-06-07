@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Books } from '../models/book.model';
+import { Book } from '../models/book';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
@@ -8,10 +8,10 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./book.component.css']
 })
 export class BookComponent implements OnInit {
-  
+
   newAuthor: string = "";
   newTitle: string = "";
-  bookshelf = new MatTableDataSource<Books>;
+  bookshelf = new MatTableDataSource<Book>;
   displayedColumns: string[] = ['title','author','id'];
   binding: any;
 
@@ -22,10 +22,10 @@ export class BookComponent implements OnInit {
 
   addBook(){
     if(this.newTitle.trim().length && this.newAuthor.trim().length){
-      let newBook: Books = {
+      let newBook: Book = {
         title: this.newTitle,
         author: this.newAuthor,
-        id: Date.now()
+        id: JSON.stringify(Date.now())
       }
       // this.bookshelf.push(newBook);
       this.bookshelf.data.push(newBook);
